@@ -2,7 +2,7 @@
 
 ### 1. Application Deployment Verification Run Sequence
 * **Workstation Local Run Steps:** Open the root `index.html` layout file directly using a standard desktop web browser framework, or spin up the directory environment through a basic static host like VS Code Live Server. No background system compilation steps are needed.
-* **Live Server Deployment Link:**  * weekly-habit-traker.netlify.app *
+* **Live Server Deployment Link:**    weekly-habit-traker.netlify.app 
 
 ### 2. Architecture Vector Choices & Interaction Strategies
 * **Stack Choice Defense:** I intentionally selected an optimized combination of Vanilla HTML5 semantics, custom CSS variables, and modern ES6 JavaScript. Removing external dependencies (like React or Vue) avoids framework rendering cycles and package management overhead, isolating performance entirely to the core browser thread.
