@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glance Weekly Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-main">
+            <h1>Glance</h1>
+            <p class="subtitle">Track your consistency at a glance</p>
+        </div>
+        <div class="week-navigation">
+            <button id="prev-week-btn" class="nav-btn" aria-label="Previous week">&larr;</button>
+            <span id="current-week-range" class="week-range">Loading dates...</span>
+            <button id="next-week-btn" class="nav-btn" aria-label="Next week">&rarr;</button>
+            <button id="today-shortcut-btn" class="shortcut-btn">This Week</button>
+        </div>
+        <button id="open-add-modal-btn" class="action-btn">+ Add Habit</button>
+    </header>
+
+    <main class="app-container">
+        <div id="empty-state" class="empty-state hidden">
+            <div class="empty-icon">🌱</div>
+            <h2>Build new routines</h2>
+            <p>You haven't added any habits yet. Start small and track your progress daily.</p>
+            <button id="empty-add-btn" class="action-btn">+ Create First Habit</button>
+        </div>
+
+        <div id="tracker-wrapper" class="tracker-wrapper">
+            <div id="habit-grid" class="habit-grid">
+                </div>
+        </div>
+    </main>
+
+    <div id="add-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>New Habit</h3>
+            <form id="add-habit-form">
+                <input type="text" id="habit-name-input" placeholder="e.g., Read 30 minutes, Gym, Meditate" required autofocus maxlength="40">
+                <div class="modal-actions">
+                    <button type="button" id="close-modal-btn" class="secondary-btn">Cancel</button>
+                    <button type="submit" class="action-btn">Save Habit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
 
