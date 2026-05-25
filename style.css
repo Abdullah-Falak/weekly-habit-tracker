@@ -1,1 +1,282 @@
+:root {
+    --bg-primary: #121214;
+    --bg-surface: #1a1a1e;
+    --bg-surface-hover: #26262b;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --success: #10b981;
+    --success-muted: rgba(16, 185, 129, 0.15);
+    --border-color: #2e2e35;
+    --today-highlight: rgba(99, 102, 241, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding: 2rem 1rem;
+}
+
+/* Header Layout */
+.app-header {
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.week-navigation {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--bg-surface);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.week-range {
+    font-weight: 500;
+    min-width: 180px;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+/* Buttons Styling */
+button {
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.nav-btn, .shortcut-btn, .secondary-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.nav-btn:hover, .shortcut-btn:hover {
+    background: var(--bg-surface-hover);
+}
+
+.shortcut-btn {
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.5rem;
+}
+
+.action-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.action-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Main Container and Grid Scrolling Framework */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tracker-wrapper {
+    background: var(--bg-surface);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto; /* Handles 360px phones elegantly via swiping */
+}
+
+/* Core 8-Column Grid Layout (1 for Habit Names, 7 for Days) */
+.habit-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) repeat(7, minmax(80px, 1fr));
+    min-width: 800px; /* Forces full display spacing in desktop view */
+}
+
+/* Grid Cell Typography & Borders */
+.grid-cell {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-cell:nth-child(8n) {
+    border-right: none; /* Strip outermost right border */
+}
+
+.header-cell {
+    background: #1e1e24;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    flex-direction: column;
+    padding: 0.75rem;
+}
+
+.header-cell .date-num {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-top: 0.15rem;
+}
+
+.habit-name-cell {
+    justify-content: space-between;
+    font-weight: 500;
+    padding-left: 1.25rem;
+}
+
+.habit-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.streak-badge {
+    font-size: 0.75rem;
+    color: #fbbf24;
+    font-weight: bold;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 1.1rem;
+}
+
+.habit-name-cell:hover .delete-btn {
+    opacity: 1;
+}
+
+/* Highlights column belonging to Current Day */
+.today-col {
+    background-color: var(--today-highlight);
+}
+
+/* Satisfaction Custom Ticked Checkbox Animation */
+.checkmark-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    background: transparent;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.checkmark-toggle:hover {
+    border-color: var(--text-secondary);
+}
+
+.checkmark-toggle.checked {
+    background-color: var(--success-muted);
+    border-color: var(--success);
+    color: var(--success);
+    transform: scale(1.05);
+    animation: pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop {
+    0% { transform: scale(0.8); }
+    100% { transform: scale(1.05); }
+}
+
+/* Empty State Details */
+.empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: var(--bg-surface);
+    border-radius: 12px;
+    border: 1px dashed var(--border-color);
+}
+
+.empty-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+/* Modals Positioning */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.modal-content h3 { margin-bottom: 1rem; }
+
+.modal-content input {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.secondary-btn {
+    border: 1px solid var(--border-color);
+}
+
+.hidden { display: none !important; }
 
